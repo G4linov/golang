@@ -29,14 +29,33 @@ func main() {
 	fmt.Println(number)
 
 	/*
-		Массив
+		Массив и слайсы
 	*/
 
 	// messages := [3]string{"1", "2", "3"}
+	// messages := []string{"1", "2", "3"}
 
-	messages := []string{"1", "2", "3"}
+	//var messages []string
+	messages := make([]string, 2, 3)
+	messages = append(messages, "1", "2")
 	fmt.Println(messages)
-	printMessages(messages)
+	fmt.Println(len(messages))
+	fmt.Println(cap(messages))
+	// printMessages(messages)
+
+	/*
+		Матрицы
+	*/
+
+	matrix := make([][]int, 10)
+
+	for x := 0; x < 10; x++ {
+		matrix[x] = make([]int, 10)
+		for y := 0; y < 10; y++ {
+			matrix[x][y] = x
+		}
+		fmt.Println(matrix[x])
+	}
 }
 
 /*
