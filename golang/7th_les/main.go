@@ -2,15 +2,22 @@ package main
 
 import "fmt"
 
+type Age int
+
+func (a Age) isAdult() bool {
+	return a >= 18
+}
+
 type User struct {
 	name   string
-	age    int
+	age    Age
 	sex    string
 	weight int
 	height int
 }
 
-func (u User) printUserInfo() {
+func (u User) printUserInfo(name string) {
+	u.name = name
 	fmt.Println(u.name, u.age, u.height, u.sex, u.sex)
 }
 
@@ -27,7 +34,7 @@ func NewDumbDatabase() *DumbDatabase {
 func NewUser(name, sex string, age, weight, height int) User {
 	return User{
 		name:   name,
-		age:    age,
+		age:    Age(age),
 		sex:    sex,
 		weight: weight,
 		height: height,
@@ -36,10 +43,9 @@ func NewUser(name, sex string, age, weight, height int) User {
 
 func main() {
 	user1 := NewUser("Vasya", "Male", 23, 75, 185)
-	user2 := User{"Vasya", 23, "Male", 84, 195}
+	// user2 := User{"Vasya", 23, "Male", 84, 195}
 
 	fmt.Println(user1.name, user1.age)
 
-	user1.printUserInfo()
-	user2.printUserInfo()
+	fmt.Println(user1.age.isAdult())
 }
